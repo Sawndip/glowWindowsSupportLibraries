@@ -41,6 +41,14 @@ option(PNG_BUILD_ZLIB "Custom zlib Location, else find_package is used" OFF)
 if(NOT PNG_BUILD_ZLIB)
   find_package(ZLIB REQUIRED)
   include_directories(${ZLIB_INCLUDE_DIR})
+else()
+  add_subdirectory(${ZLIB_INCLUDE_DIR} "${CMAKE_CURRENT_BINARY_DIR}/zlib")
+  set(ZLIB_LIBRARY zlibstatic)
+  include_directories(${ZLIB_INCLUDE_DIR})
+  # so that zconfgi.h can be found
+  include_directories("${CMAKE_CURRENT_BINARY_DIR}/zlib")
+  # Kind of hacking to get rid of error that zlibstatic is not defined in EXPORT
+  set(SKIP_INSTALL_ALL TRUE)
 endif()
 
 if(UNIX AND NOT APPLE AND NOT BEOS AND NOT HAIKU)
@@ -200,7 +208,7 @@ endif(PNG_HARDWARE_OPTIMIZATIONS)
 set(PNG_LIB_NAME png${PNGLIB_MAJOR}${PNGLIB_MINOR})
 
 # to distinguish between debug and release lib
-set(CMAKE_DEBUG_POSTFIX "d")
+#set(CMAKE_DEBUG_POSTFIX "d")
 
 include(CheckCSourceCompiles)
 option(ld-version-script "Enable linker version script" ON)
