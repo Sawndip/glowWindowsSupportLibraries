@@ -47,6 +47,8 @@ else()
   include_directories(${ZLIB_INCLUDE_DIR})
   # so that zconfgi.h can be found
   include_directories("${CMAKE_CURRENT_BINARY_DIR}/zlib")
+  #Updating this so that when AWK/GAWK is found it would look for zconfig.h in zlib dir
+  set(ZLIB_INCLUDE_DIR "${ZLIB_INCLUDE_DIR};${CMAKE_CURRENT_BINARY_DIR}/zlib")
   # Kind of hacking to get rid of error that zlibstatic is not defined in EXPORT
   set(SKIP_INSTALL_ALL TRUE)
 endif()
