@@ -49,8 +49,6 @@ else()
   include_directories("${CMAKE_CURRENT_BINARY_DIR}/zlib")
   #Updating this so that when AWK/GAWK is found it would look for zconfig.h in zlib dir
   set(ZLIB_INCLUDE_DIR "${ZLIB_INCLUDE_DIR};${CMAKE_CURRENT_BINARY_DIR}/zlib")
-  # Kind of hacking to get rid of error that zlibstatic is not defined in EXPORT
-  set(SKIP_INSTALL_ALL TRUE)
 endif()
 
 if(UNIX AND NOT APPLE AND NOT BEOS AND NOT HAIKU)
@@ -210,7 +208,7 @@ endif(PNG_HARDWARE_OPTIMIZATIONS)
 set(PNG_LIB_NAME png${PNGLIB_MAJOR}${PNGLIB_MINOR})
 
 # to distinguish between debug and release lib
-#set(CMAKE_DEBUG_POSTFIX "d")
+set(CMAKE_DEBUG_POSTFIX "d")
 
 include(CheckCSourceCompiles)
 option(ld-version-script "Enable linker version script" ON)
@@ -539,6 +537,11 @@ unset(PNG_LIB_TARGETS)
 if(PNG_SHARED)
   add_library(png SHARED ${libpng_sources})
   set(PNG_LIB_TARGETS png)
+
+  if(PNG_BUILD_ZLIB)
+    list(APPEND PNG_LIB_TARGETS ${ZLIB_LIBRARY})
+  endif()
+
   set_target_properties(png PROPERTIES OUTPUT_NAME ${PNG_LIB_NAME})
   add_dependencies(png genfiles)
   if(MSVC)
