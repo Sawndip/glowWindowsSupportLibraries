@@ -9,25 +9,25 @@ Example of command:
 <h1>ZLIB/LIBPNG:</h1>
 cmake -G "Visual Studio 15 2017" -DCMAKE_GENERATOR_PLATFORM=x64 -DPNG_BUILD_ZLIB=ON -DZLIB_INCLUDE_DIR="../zlib-1.2.11" -DPNG_STATIC=OFF -DPNG_SHARED=ON -DCMAKE_INSTALL_PREFIX:PATH=../libpngInstall ..\lpng1636
 
-cmake --build . --config Debug
-cmake --build . --config Release
-cmake --build . --target install --config Debug
-cmake --build . --target install --config Release
+* cmake --build . --config Debug
+* cmake --build . --config Release
+* cmake --build . --target install --config Debug
+* cmake --build . --target install --config Release
 
 
 <h1>GLOG:</h1>
 cmake ../ -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_INSTALL_RUNSTATEDIR:PATH="" -DCMAKE_INSTALL_PREFIX:PATH="<Glog_Location>" -DWITH_GFLAGS:BOOL="0"
 
-cmake --build . --config Release
-cmake --build . --config Debug
-cmake --build . --target install --config Debug
-cmake --build . --target install --config Release
+* cmake --build . --config Release
+* cmake --build . --config Debug
+* cmake --build . --target install --config Debug
+* cmake --build . --target install --config Release
 
 <h1>Protobuf:</h1>
 When running config it will give a warning that zlib is not found. This is doesn't impact GLOW.
 cmake ..\cmake -DBUILD_SHARED_LIBS=TRUE -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_INSTALL_PREFIX:PATH=../protobufInstall
 
-cmake --build . --config Debug
-cmake --build . --config Release
-cmake --build . --target install --config Debug
-cmake --build . --target install --config Release
+* cmake --build . --config Debug
+* cmake --build . --config Release
+* cmake --build . --target install --config Debug
+* cmake --build . --target install --config Release
