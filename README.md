@@ -24,7 +24,8 @@ cmake ../ -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_INSTALL_RUNSTATEDIR:PATH="" -DC
 * cmake --build . --target install --config Release
 
 <h1>Protobuf:</h1>
-When running config it will give a warning that zlib is not found. This is doesn't impact GLOW.
+When running config it will give a warning that zlib is not found. This is doesn't impact GLOW. 
+
 cmake ..\cmake -DBUILD_SHARED_LIBS=TRUE -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_GENERATOR_PLATFORM=x64 -DCMAKE_INSTALL_PREFIX:PATH=../protobufInstall
 
 * cmake --build . --config Debug
